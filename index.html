@@ -99,7 +99,8 @@ canvas.hy { position: absolute; pointer-events: none; z-index: 1; }
 .facts .d { font: 500 .9rem/1.5 var(--sans); letter-spacing: .2em; text-transform: uppercase; }
 .facts .v { font: italic 300 1.35rem/1.4 var(--serif); color: var(--muted); }
 .hero-row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 34px; }
-.count { display: flex; align-items: baseline; gap: 10px; }
+.when { font: 500 .9rem/1.5 var(--sans); letter-spacing: .2em; text-transform: uppercase; margin: 0 0 30px; }
+.count { display: flex; align-items: baseline; gap: 10px; margin-top: 22px; }
 .count b { font: 300 3rem/1 var(--serif); font-variant-numeric: tabular-nums; color: var(--leaf); letter-spacing: -.02em; }
 .count span { font: 500 .72rem/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 .hero canvas.hy.a { right: -7%; top: 40px; width: min(68vw, 740px); height: min(68vw, 740px); }
@@ -280,8 +281,9 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
   .choices { grid-template-columns: 1fr; }
   .row { grid-template-columns: 1fr; gap: 4px; }
   .card { padding: 32px 22px; }
-  .card .btn, .panel .btn, .hero .btn { width: 100%; }
-  .card .actions, .panel .actions, .hero .actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .card .btn, .panel .btn { width: 100%; }
+  .hero .btn { min-width: 180px; }
+  .card .actions, .panel .actions { flex-direction: column; align-items: stretch; width: 100%; }
   .hero-row { width: 100%; }
   #done { text-align: center; }
   .tick { margin-inline: auto; }
@@ -313,17 +315,8 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
   </header>
   <section class="wrap">
     <h1><span>Jamie</span><span class="pair"><span class="amp">&amp;</span>&nbsp;Abby</span></h1>
-    <div class="facts">
-      <p class="d">Saturday, July 31, 2027</p>
-      <p class="v">Fields at Skycrest · Cleveland, North Carolina</p>
-    </div>
-    <div class="hero-row">
-      <div class="actions">
-        <a class="btn" href="#rsvp">RSVP</a>
-        <a class="btn ghost" id="calLink" href="#details">Add to calendar</a>
-      </div>
-      <div class="count" aria-live="polite"><b id="days">262</b><span>days to go</span></div>
-    </div>
+    <p class="when">Saturday, July 31, 2027</p>
+    <div class="actions"><a class="btn" href="#rsvp">RSVP</a></div>
   </section>
 </div>
 
@@ -367,6 +360,7 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
         <p class="eyebrow">Saturday, July 31, 2027</p>
         <h2>The <em>day</em></h2>
         <p class="lead">The ceremony and reception are both at Fields at Skycrest, a 95-acre farm property just outside Mooresville.</p>
+        <div class="count" aria-live="polite"><b id="days">262</b><span>days to go</span></div>
       </div>
       <div class="venue">
         <div class="panel">
@@ -743,7 +737,7 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
     + '&dates=20270731/20270801'
     + '&location=' + encodeURIComponent(venue)
     + '&details=' + encodeURIComponent('Wedding of Jamie Baker and Abby Pittmon. Entrance is off Triplett Road.');
-  ['calLink', 'calLink2'].forEach(function (id) { var a = $(id); a.href = cal; a.target = '_blank'; a.rel = 'noopener'; });
+  ['calLink2'].forEach(function (id) { var a = $(id); a.href = cal; a.target = '_blank'; a.rel = 'noopener'; });
 
   /* Placeholder-aware links */
   function linkBtn(a, url, label) {
