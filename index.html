@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jamie &amp; Abby</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Jamie Baker and Abby Pittmon are getting married. Saturday, July 31, 2027, at Fields at Skycrest in Cleveland, North Carolina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout concept: a modern farmhouse page in crisp white and soft black, with painted-in-code hydrangea heads
+   (blush and limelight green) spilling in from the edges; arched photo windows drift beneath the names. */
+:root {
+  --paper: #FCFBF7;
+  --white: #FFFFFF;
+  --ink: #1E2622;
+  --muted: #5E6A62;
+  --leaf: #587A4A;
+  --lime: #E3ECD0;
+  --lime-2: #C6D9A3;
+  --petal: #F8E1E4;
+  --petal-2: #E9AEBB;
+  --rose: #A84F69;
+  --line: #E4E7DC;
+  --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Jost', 'Futura', 'Avenir Next', 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.08rem/1.7 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+[hidden] { display: none !important; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+
+.wrap {
+  width: min(1180px, 100%);
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  position: relative;
+}
+.eyebrow {
+  font: 500 .74rem/1.6 var(--sans);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  margin: 0;
+}
+h2 {
+  font: 300 clamp(2.6rem, 6vw, 4.1rem)/1.05 var(--serif);
+  letter-spacing: -.02em;
+  margin: 10px 0 18px;
+  text-wrap: balance;
+}
+h2 em, h1 em { font-style: italic; color: var(--rose); }
+.section { padding-block: clamp(76px, 10vw, 132px); position: relative; overflow: hidden; }
+.head { max-width: 42rem; margin: 0 0 clamp(36px, 5vw, 56px); position: relative; z-index: 1; }
+.head.center { text-align: center; margin-inline: auto; }
+.head p.lead { margin: 0; color: var(--muted); font-size: 1.15rem; text-wrap: pretty; }
+.soon { font-style: italic; color: var(--rose); }
+canvas.hy { position: absolute; pointer-events: none; z-index: 0; }
+
+/* Top bar */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; padding-block: 22px; flex-wrap: wrap; z-index: 2; }
+.bar .mark { font: 400 1.5rem/1 var(--serif); text-decoration: none; letter-spacing: -.01em; }
+.bar .mark em { color: var(--rose); }
+.bar nav { display: flex; gap: 4px 24px; flex-wrap: wrap; }
+.bar nav a { font: 500 .72rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; text-decoration: none; padding-block: 8px; border-bottom: 1px solid transparent; }
+.bar nav a:hover { border-bottom-color: var(--petal-2); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { padding-block: clamp(36px, 7vw, 90px) clamp(40px, 6vw, 72px); z-index: 1; }
+.hero h1 { font: 300 clamp(4.2rem, 15.5vw, 10.5rem)/.9 var(--serif); letter-spacing: -.045em; margin: 22px 0 30px; }
+.hero h1 span { display: block; }
+.hero h1 em { font-weight: 300; padding-right: .08em; }
+.facts { display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: baseline; margin: 0 0 34px; }
+.facts p { margin: 0; }
+.facts .d { font: 500 .9rem/1.5 var(--sans); letter-spacing: .2em; text-transform: uppercase; }
+.facts .v { font: italic 300 1.35rem/1.4 var(--serif); color: var(--muted); }
+.hero-row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 34px; }
+.count { display: flex; align-items: baseline; gap: 10px; }
+.count b { font: 300 3rem/1 var(--serif); font-variant-numeric: tabular-nums; color: var(--leaf); letter-spacing: -.02em; }
+.count span { font: 500 .72rem/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.hero canvas.hy.a { right: -5%; top: 70px; width: min(58vw, 620px); height: min(58vw, 620px); }
+.hero canvas.hy.b { right: 24%; bottom: -26%; width: min(30vw, 320px); height: min(30vw, 320px); opacity: .95; }
+@media (max-width: 760px) {
+  .hero canvas.hy.a { right: -34%; top: 120px; width: 88vw; height: 88vw; opacity: .45; }
+  .hero canvas.hy.b { display: none; }
+}
+
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font: 500 .74rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; text-decoration: none;
+  padding: 18px 30px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  cursor: pointer; border-radius: 999px; display: inline-block; text-align: center; transition: background .25s, color .25s, border-color .25s;
+}
+.btn:hover { background: transparent; color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn[disabled], .btn.off { opacity: .5; cursor: default; pointer-events: none; }
+.btn.rose { background: var(--rose); border-color: var(--rose); color: var(--white); }
+.btn.rose:hover { background: transparent; color: var(--rose); }
+
+/* Drifting photo band: arched windows */
+.reel { --h: clamp(300px, 54vh, 500px); --gap: 16px; overflow: hidden; padding-bottom: 8px; }
+.track { display: flex; width: max-content; }
+.set { display: flex; align-items: flex-end; gap: var(--gap); padding-right: var(--gap); }
+.set figure {
+  margin: 0; flex: none; height: var(--h); aspect-ratio: 9 / 15; max-width: none;
+  border-radius: 999px 999px 10px 10px; overflow: hidden; background: var(--lime);
+}
+.set figure.short { height: calc(var(--h) - 64px); }
+.set img { width: 100%; height: 100%; object-fit: cover; }
+.reel.js .track { display: block; width: auto; }
+.reel.js .set { display: block; position: relative; height: var(--h); padding: 0; }
+.reel.js .set figure { position: absolute; left: 0; bottom: 0; will-change: transform; }
+
+/* Story */
+.story { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(36px, 7vw, 100px); align-items: center; }
+.story > * { min-width: 0; position: relative; z-index: 1; }
+.duo { position: relative; padding-bottom: 20%; }
+.duo .a { width: 74%; aspect-ratio: 3 / 4; border-radius: 999px 999px 10px 10px; overflow: hidden; }
+.duo .b { position: absolute; right: 0; bottom: 0; width: 44%; aspect-ratio: 3 / 4; border-radius: 10px; overflow: hidden; border: 8px solid var(--paper); }
+.duo img { width: 100%; height: 100%; object-fit: cover; }
+.story p { margin: 0 0 16px; max-width: 34rem; }
+.story .names { font: 500 .74rem/1.6 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-top: 26px; }
+#story canvas.hy { left: -8%; bottom: -10%; width: 300px; height: 300px; opacity: .8; }
+
+/* Day details */
+.day { background: var(--lime); }
+.venue { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; position: relative; z-index: 1; }
+.venue > * { min-width: 0; }
+.panel { background: var(--white); padding: clamp(26px, 4vw, 44px); border-radius: 26px; }
+.panel h3, .sched h3 { font: 500 .74rem/1.5 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--leaf); margin: 0 0 18px; }
+dl { margin: 0 0 26px; }
+.row { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 15px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.row:last-child { border-bottom: 1px solid var(--line); }
+dt { font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+dd { margin: 0; font: 400 1.3rem/1.35 var(--serif); }
+dd small { display: block; font: 400 .98rem/1.5 var(--sans); color: var(--muted); }
+.sched ol { list-style: none; margin: 0; padding: 0; position: relative; }
+.sched ol::before { content: ""; position: absolute; left: 8px; top: 12px; bottom: 12px; width: 1px; background: var(--lime-2); }
+.sched li { position: relative; padding: 0 0 24px 42px; }
+.sched li:last-child { padding-bottom: 0; }
+.sched li::before { content: ""; position: absolute; left: 0; top: 7px; width: 17px; height: 17px; border-radius: 50%; background: radial-gradient(circle, var(--white) 22%, var(--petal-2) 24%, var(--petal-2) 60%, var(--petal) 62%); }
+.sched .t { font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); display: block; }
+.sched strong { font: 400 1.4rem/1.3 var(--serif); display: block; }
+.sched p { margin: 2px 0 0; color: var(--muted); font-size: 1rem; }
+.notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: clamp(36px, 5vw, 56px); position: relative; z-index: 1; }
+.notes div { border-top: 1px solid var(--lime-2); padding-top: 14px; }
+.notes b { font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--leaf); display: block; margin-bottom: 4px; }
+.notes p { margin: 0; font-size: 1rem; }
+.day canvas.hy { right: -90px; top: -110px; width: 360px; height: 360px; }
+
+/* Attire */
+.attire { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(36px, 7vw, 100px); align-items: center; }
+.attire > * { min-width: 0; }
+.attire .photo { aspect-ratio: 4 / 5; border-radius: 999px 999px 10px 10px; overflow: hidden; order: 2; }
+.attire .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.code { font: 400 1.6rem/1.2 var(--serif); margin: 0 0 4px; }
+.attire ul { list-style: none; padding: 0; margin: 24px 0 30px; display: grid; gap: 12px; }
+.attire li { padding-left: 28px; position: relative; }
+.attire li::before { content: ""; position: absolute; left: 0; top: .5em; width: 12px; height: 12px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--lime-2); }
+.palette { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.palette i { width: 40px; height: 40px; border-radius: 50%; display: block; box-shadow: inset 0 0 0 1px rgba(30,38,34,.08); }
+.palette span { font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-left: 8px; }
+
+/* Travel */
+.travel { border-top: 1px solid var(--line); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.cards > * { min-width: 0; }
+.tcard { background: var(--white); border: 1px solid var(--line); border-radius: 26px; padding: 30px 28px; display: flex; flex-direction: column; gap: 10px; }
+.tcard h3 { font: 400 1.5rem/1.2 var(--serif); margin: 0; }
+.tcard .k { font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); margin: 0; }
+.tcard p { margin: 0; color: var(--muted); font-size: 1rem; }
+.tcard .btn { margin-top: auto; align-self: flex-start; }
+.tcard .spacer { flex: 1; }
+
+/* Registry */
+.registry { background: var(--petal); }
+.regs { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.reg { background: var(--white); border-radius: 26px; padding: 34px 30px; text-align: center; flex: 1 1 240px; max-width: 340px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.reg .ring { width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--petal-2); display: grid; place-items: center; font: italic 400 1.2rem/1 var(--serif); color: var(--rose); }
+.reg h3 { font: 400 1.45rem/1.25 var(--serif); margin: 0; }
+.reg p { margin: 0; color: var(--muted); font-size: 1rem; font-style: italic; }
+.registry canvas.hy.a { left: -110px; bottom: -120px; width: 380px; height: 380px; }
+.registry canvas.hy.b { right: -80px; top: -90px; width: 280px; height: 280px; }
+
+/* RSVP */
+.rsvp { background: var(--ink); color: var(--paper); }
+.rsvp .head { text-align: center; margin-inline: auto; }
+.rsvp .eyebrow { color: var(--lime-2); }
+.rsvp h2 em { color: var(--petal-2); }
+.rsvp .head p.lead { color: #C9D1C9; }
+.card { background: var(--paper); color: var(--ink); max-width: 640px; margin: 0 auto; padding: clamp(26px, 5vw, 56px); text-align: left; border-radius: 30px; position: relative; z-index: 1; }
+.card h3 { font: 300 clamp(2rem, 5vw, 2.6rem)/1.1 var(--serif); letter-spacing: -.02em; margin: 0 0 8px; }
+.card p { margin: 0 0 22px; }
+.note { font-size: 1rem; color: var(--muted); font-style: italic; }
+.demo { border: 1px dashed var(--petal-2); border-radius: 12px; padding: 10px 14px; margin-bottom: 26px; font-size: .95rem; color: var(--muted); }
+.field { margin-bottom: 26px; }
+label, .lbl { display: block; font: 500 .7rem/1.5 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+input[type=text], textarea {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0;
+  padding: 10px 0; font: 400 1.25rem/1.4 var(--serif); color: var(--ink); appearance: none;
+}
+#nameList input { display: block; margin-top: 10px; }
+textarea { resize: vertical; min-height: 84px; }
+input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); box-shadow: 0 1px 0 var(--ink); }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.choice { position: relative; display: block; letter-spacing: normal; text-transform: none; }
+.choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.choice span { display: block; border: 1px solid var(--line); border-radius: 999px; padding: 16px 12px; text-align: center; font: 400 1.15rem/1.3 var(--serif); color: var(--ink); transition: background .2s, color .2s, border-color .2s; }
+.choice input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.choice input:focus-visible + span { outline: 2px solid var(--rose); outline-offset: 3px; }
+.msg { min-height: 1.5em; font-size: 1rem; color: var(--rose); margin: 0 0 16px; }
+.picks { display: grid; gap: 10px; margin-bottom: 8px; }
+.picks .btn { text-align: left; letter-spacing: .1em; }
+.tick { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--leaf); color: var(--leaf); display: grid; place-items: center; margin-bottom: 16px; font: 400 1.3rem/1 var(--serif); }
+.summary { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0; margin: 18px 0 26px; font-size: 1.1rem; }
+.rsvp canvas.hy { left: -120px; top: 40px; width: 360px; height: 360px; opacity: .9; }
+
+/* FAQ */
+.faq-grid { display: grid; grid-template-columns: 4fr 7fr; gap: clamp(28px, 6vw, 90px); align-items: start; }
+.faq-grid > * { min-width: 0; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { cursor: pointer; list-style: none; padding: 20px 44px 20px 0; position: relative; font: 400 1.3rem/1.35 var(--serif); }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); font: 300 1.7rem/1 var(--sans); color: var(--rose); transition: transform .25s; }
+.faq-list details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq-list details p { margin: 0 0 22px; color: var(--muted); max-width: 40rem; }
+
+/* Footer */
+.foot { background: var(--lime); text-align: center; }
+.foot .names { font: 300 clamp(3rem, 9vw, 5.2rem)/1 var(--serif); letter-spacing: -.035em; margin: 0; position: relative; z-index: 1; }
+.foot .names em { color: var(--rose); }
+.foot p:not(.names) { margin: 14px 0 0; font: 500 .74rem/1.8 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--leaf); position: relative; z-index: 1; }
+.foot canvas.hy.a { left: -90px; bottom: -150px; width: 300px; height: 300px; }
+.foot canvas.hy.b { right: -60px; top: -100px; width: 300px; height: 300px; }
+
+@media (max-width: 860px) {
+  .story, .venue, .attire, .faq-grid { grid-template-columns: 1fr; }
+  .attire .photo { order: 0; max-width: 460px; width: 100%; margin-inline: auto; }
+  .duo { max-width: 460px; margin-inline: auto; width: 100%; }
+  .cards, .notes { grid-template-columns: 1fr; }
+  .bar nav { gap: 2px 16px; }
+  .bar nav a { font-size: .66rem; letter-spacing: .14em; }
+  .set figure.short { height: calc(var(--h) - 44px); }
+  #story canvas.hy, .rsvp canvas.hy { display: none; }
+  .day canvas.hy { width: 240px; height: 240px; right: -90px; top: -100px; }
+}
+@media (max-width: 480px) {
+  .choices { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; gap: 4px; }
+  .card { padding: 32px 22px; }
+  .card .btn, .panel .btn, .hero .btn { width: 100%; }
+  .card .actions, .panel .actions, .hero .actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-row { width: 100%; }
+  #done { text-align: center; }
+  .tick { margin-inline: auto; }
+  .registry canvas.hy.a, .foot canvas.hy.a { width: 220px; height: 220px; }
+  .registry canvas.hy.b, .foot canvas.hy.b { width: 180px; height: 180px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reel { overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <canvas class="hy a" data-hue="pink" data-seed="7" aria-hidden="true"></canvas>
+  <canvas class="hy b" data-hue="green" data-seed="21" aria-hidden="true"></canvas>
+  <header class="wrap bar">
+    <a class="mark" href="#top" id="top">J <em>&amp;</em> A</a>
+    <nav aria-label="Sections">
+      <a href="#story">Our Story</a>
+      <a href="#details">The Day</a>
+      <a href="#attire">Attire</a>
+      <a href="#travel">Travel</a>
+      <a href="#registry">Registry</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+  <section class="wrap">
+    <p class="eyebrow">Together with their families</p>
+    <h1><span>Jamie</span><span><em>&amp;</em> Abby</span></h1>
+    <div class="facts">
+      <p class="d">Saturday, July 31, 2027</p>
+      <p class="v">Fields at Skycrest · Cleveland, North Carolina</p>
+    </div>
+    <div class="hero-row">
+      <div class="actions">
+        <a class="btn" href="#rsvp">RSVP</a>
+        <a class="btn ghost" id="calLink" href="#details">Add to calendar</a>
+      </div>
+      <div class="count" aria-live="polite"><b id="days">262</b><span>days to go</span></div>
+    </div>
+  </section>
+</div>
+
+<section class="reel" aria-label="Photographs of Jamie and Abby">
+  <div class="track">
+    <div class="set">
+      <figure><img src="img/bridge-pose.jpg" alt="Jamie and Abby smiling on a wooden footbridge, arms raised together" fetchpriority="high"></figure>
+      <figure class="short"><img src="img/field-dip.jpg" alt="Abby laughing as Jamie holds her in front of yellow wildflowers"></figure>
+      <figure><img src="img/meadow-walk.jpg" alt="Jamie and Abby walking through a green meadow, smiling at each other"></figure>
+      <figure class="short"><img src="img/lift.jpg" alt="Jamie lifting Abby in a grassy field"></figure>
+      <figure><img src="img/twirl.jpg" alt="Jamie twirling Abby on a footbridge under the trees"></figure>
+      <figure class="short"><img src="img/field-hug.jpg" alt="Jamie and Abby embracing beside wildflowers"></figure>
+      <figure><img src="img/bridge-embrace.jpg" alt="Jamie and Abby face to face, laughing, on the footbridge"></figure>
+      <figure class="short"><img src="img/look-back.jpg" alt="Jamie and Abby holding hands and looking back over their shoulders"></figure>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section" id="story">
+    <canvas class="hy" data-hue="green" data-seed="3" aria-hidden="true"></canvas>
+    <div class="wrap story">
+      <div class="duo" aria-hidden="true">
+        <div class="a"><img src="img/forehead-kiss.jpg" alt="" loading="lazy"></div>
+        <div class="b"><img src="img/field-walk.jpg" alt="" loading="lazy"></div>
+      </div>
+      <div>
+        <p class="eyebrow">How it started</p>
+        <h2>Our <em>story</em></h2>
+        <p>How we met, the proposal, and everything in between. <span class="soon">Our story is coming soon.</span></p>
+        <p>We can’t wait to celebrate the start of our marriage with the people we love most, on a summer night in North Carolina at the end of July.</p>
+        <p class="names">Jamie Baker &amp; Abby Pittmon</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section day" id="details">
+    <canvas class="hy" data-hue="pink" data-seed="11" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Saturday, July 31, 2027</p>
+        <h2>The <em>day</em></h2>
+        <p class="lead">The ceremony and reception are both at Fields at Skycrest, a 95-acre farm property just outside Mooresville.</p>
+      </div>
+      <div class="venue">
+        <div class="panel">
+          <h3>Ceremony &amp; reception</h3>
+          <dl>
+            <div class="row"><dt>Date</dt><dd>Saturday, July 31, 2027<small class="soon">Ceremony time coming soon</small></dd></div>
+            <div class="row"><dt>Venue</dt><dd>Fields at Skycrest<small>195 Skycrest Lane<br>Cleveland, NC 27013</small></dd></div>
+            <div class="row"><dt>Entrance</dt><dd>Off Triplett Road<small>Not Shinnville Road</small></dd></div>
+            <div class="row"><dt>Parking</dt><dd>Free parking on site</dd></div>
+          </dl>
+          <div class="actions">
+            <a class="btn" id="mapLink" href="#details" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn ghost" id="calLink2" href="#details">Add to calendar</a>
+          </div>
+        </div>
+        <div class="sched">
+          <h3>Order of the evening</h3>
+          <ol>
+            <li><span class="t">Time to come</span><strong>Guests arrive</strong><p>Come down the private drive and find a seat.</p></li>
+            <li><span class="t">Time to come</span><strong>Ceremony</strong><p>Jamie and Abby say “I do.”</p></li>
+            <li><span class="t">Time to come</span><strong>Cocktail hour</strong><p>Drinks on the patio under the café lights.</p></li>
+            <li><span class="t">Time to come</span><strong>Dinner &amp; dancing</strong><p>Reception in the climate-controlled hall.</p></li>
+            <li><span class="t">Time to come</span><strong>Send-off</strong><p>Help us end the night in style.</p></li>
+          </ol>
+        </div>
+      </div>
+      <div class="notes">
+        <div><b>Rain or shine</b><p>The venue has a large covered space, so the day goes on whatever the weather.</p></div>
+        <div><b>Indoors &amp; out</b><p>The reception hall is air-conditioned. Some of the evening may be outdoors on grass.</p></div>
+        <div><b>Unplugged</b><p class="soon">Ceremony photo policy coming soon.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="attire">
+    <div class="wrap attire">
+      <div class="photo"><img src="img/twirl.jpg" alt="Abby in a white dress being twirled by Jamie on a footbridge" loading="lazy"></div>
+      <div>
+        <p class="eyebrow">What to wear</p>
+        <h2>Summer <em>attire</em></h2>
+        <p class="code">Dress code</p>
+        <p class="soon">Our dress code is coming soon.</p>
+        <ul>
+          <li>Late July in North Carolina is hot and humid. Light, breathable fabrics will keep you comfortable.</li>
+          <li>Parts of the evening may be on grass, so block heels, wedges or flats are a good idea.</li>
+          <li>Please leave white, ivory and cream to the bride.</li>
+        </ul>
+        <div class="palette" aria-label="Wedding colors: light green and pink">
+          <i style="background:#E3ECD0"></i><i style="background:#C6D9A3"></i><i style="background:#F8E1E4"></i><i style="background:#E9AEBB"></i>
+          <span>Our colors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section travel" id="travel">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Getting here</p>
+        <h2>Travel <em>&amp;</em> stay</h2>
+        <p class="lead">Fields at Skycrest is in Cleveland, North Carolina, about 15 minutes from Mooresville and Lake Norman.</p>
+      </div>
+      <div class="cards">
+        <div class="tcard">
+          <p class="k">Flying in</p>
+          <h3>Charlotte Douglas (CLT)</h3>
+          <p>The closest major airport, about 45 minutes from the venue. Piedmont Triad (GSO) in Greensboro is another option.</p>
+        </div>
+        <div class="tcard">
+          <p class="k">Where to stay</p>
+          <h3 id="hotelName">Hotel room block</h3>
+          <p>We are reserving a block of rooms for our guests. <span class="soon">Details coming soon.</span></p>
+          <div class="spacer"></div>
+          <a class="btn rose" id="hotelBtn" href="#travel" target="_blank" rel="noopener">Link coming soon</a>
+        </div>
+        <div class="tcard">
+          <p class="k">Make a weekend of it</p>
+          <h3>Mooresville &amp; Lake Norman</h3>
+          <p>Hotels and restaurants are about 15 minutes away. Lake houses and condos on Lake Norman are a fun option for groups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section registry" id="registry">
+    <canvas class="hy a" data-hue="green" data-seed="5" aria-hidden="true"></canvas>
+    <canvas class="hy b" data-hue="pink" data-seed="17" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="head center">
+        <p class="eyebrow">Gifts</p>
+        <h2>Our <em>registry</em></h2>
+        <p class="lead">Having you there is the best gift of all. For those who have asked, you can find our registries here.</p>
+      </div>
+      <div class="regs" id="regs"></div>
+    </div>
+  </section>
+
+  <section class="section rsvp" id="rsvp">
+    <canvas class="hy" data-hue="pink" data-seed="29" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Kindly reply by June 15, 2027</p>
+        <h2>Will you <em>join us?</em></h2>
+        <p class="lead">Enter your last name to find your invitation.</p>
+      </div>
+
+      <div class="card">
+        <div class="demo" id="demoNote" hidden>Preview mode. Responses are not being saved yet. Any last name will work here.</div>
+
+        <form id="findForm" novalidate>
+          <div class="field">
+            <label for="lastName">Last name on your invitation</label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name" autocapitalize="words" required>
+          </div>
+          <p class="msg" id="findMsg" role="alert"></p>
+          <div id="picks" class="picks" hidden></div>
+          <button class="btn" type="submit" id="findBtn">Find my invitation</button>
+        </form>
+
+        <form id="respForm" novalidate hidden>
+          <h3 id="hello">Welcome</h3>
+          <p class="note">Please let us know whether you can celebrate with us on July 31.</p>
+          <div class="field">
+            <span class="lbl" id="attLbl">Will you attend?</span>
+            <div class="choices" role="radiogroup" aria-labelledby="attLbl">
+              <label class="choice"><input type="radio" name="attend" id="attYes" value="yes"><span>Joyfully accepts</span></label>
+              <label class="choice"><input type="radio" name="attend" id="attNo" value="no"><span>Regretfully declines</span></label>
+            </div>
+          </div>
+          <div id="yesFields" hidden>
+            <div class="field">
+              <span class="lbl" id="whoLbl">Who will be attending</span>
+              <p class="note" id="whoHint" style="margin:6px 0 0">Leave a line blank if that person cannot make it.</p>
+              <div id="nameList" role="group" aria-labelledby="whoLbl"></div>
+            </div>
+            <div class="field">
+              <label for="diet">Dietary needs or allergies</label>
+              <input type="text" id="diet" maxlength="200" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="song">A song that will get you on the dance floor</label>
+              <input type="text" id="song" maxlength="120" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label for="note">A note for Jamie &amp; Abby</label>
+            <textarea id="note" maxlength="600"></textarea>
+          </div>
+          <p class="msg" id="respMsg" role="alert"></p>
+          <div class="actions">
+            <button class="btn" type="submit" id="sendBtn">Send my reply</button>
+            <button class="btn ghost" type="button" id="backBtn">Back</button>
+          </div>
+        </form>
+
+        <div id="done" hidden>
+          <div class="tick" aria-hidden="true">✓</div>
+          <h3 id="thanks">Thank you</h3>
+          <div class="summary" id="summary"></div>
+          <button class="btn ghost" type="button" id="changeBtn">Change my reply</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap faq-grid">
+      <div class="head">
+        <p class="eyebrow">Good to know</p>
+        <h2>Questions <em>&amp;</em> answers</h2>
+      </div>
+      <div class="faq-list">
+        <details><summary>When should I RSVP by?</summary><p>Please reply by June 15, 2027, using the RSVP form above. If you need to change your answer, you can submit it again.</p></details>
+        <details><summary>Can I bring a guest?</summary><p>Your invitation and the RSVP form list the seats we have saved for you. If you have a question about your invitation, please reach out to Jamie or Abby.</p></details>
+        <details><summary>Are kids welcome?</summary><p class="soon">Answer coming soon.</p></details>
+        <details><summary>Is the wedding indoors or outdoors?</summary><p>Some of the day may be outdoors on the farm. The reception hall is air-conditioned, and the venue has a large covered space if the weather doesn’t cooperate.</p></details>
+        <details><summary>Where do I park?</summary><p>There is free parking on site. Turn in from Triplett Road, not Shinnville Road.</p></details>
+        <details><summary>What should I wear?</summary><p>See the <a href="#attire">attire</a> section. Our dress code is coming soon, and comfortable shoes for grass are a good idea.</p></details>
+        <details><summary>Where should I stay?</summary><p>Mooresville is about 15 minutes away and has plenty of hotels. Our room block details are in the <a href="#travel">travel</a> section once they are ready.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="section foot">
+  <canvas class="hy a" data-hue="pink" data-seed="13" aria-hidden="true"></canvas>
+  <canvas class="hy b" data-hue="green" data-seed="31" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="names">Jamie <em>&amp;</em> Abby</p>
+    <p>July 31, 2027 · Fields at Skycrest · Cleveland, NC</p>
+  </div>
+</footer>
+
+<script>
+/* Hydrangea heads, painted once per canvas: a dome of four-petal florets over a few broad leaves. */
+(function () {
+  var PAL = {
+    pink:  { petals: ['#F8E1E4', '#F4CCD3', '#EDB6C1', '#E9AEBB', '#F9EAEC', '#E2A0B0', '#F1D7E4'], eye: '#C77F92' },
+    green: { petals: ['#E9F1D8', '#DCE8C1', '#CFE0AE', '#C6D9A3', '#F1F5E6', '#B9CF92', '#E3EDCC'], eye: '#93AE6C' }
+  };
+  var LEAF = ['#7E9C6B', '#6C8C5B', '#8EAA78'];
+  function rng(seed) { var s = seed >>> 0; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function leaf(c, x, y, len, ang, col) {
+    c.save(); c.translate(x, y); c.rotate(ang);
+    c.beginPath(); c.moveTo(0, 0);
+    c.bezierCurveTo(len * .3, -len * .34, len * .78, -len * .26, len, 0);
+    c.bezierCurveTo(len * .78, len * .26, len * .3, len * .34, 0, 0);
+    c.fillStyle = col; c.fill();
+    c.beginPath(); c.moveTo(len * .05, 0); c.lineTo(len * .92, 0);
+    c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = Math.max(1, len * .012); c.stroke();
+    c.restore();
+  }
+  function floret(c, x, y, r, rot, col, eye) {
+    c.save(); c.translate(x, y); c.rotate(rot);
+    for (var k = 0; k < 4; k++) {
+      c.rotate(Math.PI / 2);
+      c.beginPath();
+      c.moveTo(0, 0);
+      c.bezierCurveTo(r * .55, -r * .5, r * 1.05, -r * .32, r, 0);
+      c.bezierCurveTo(r * 1.05, r * .32, r * .55, r * .5, 0, 0);
+      c.fillStyle = col; c.fill();
+      c.strokeStyle = 'rgba(255,255,255,.55)'; c.lineWidth = Math.max(.6, r * .05); c.stroke();
+    }
+    c.beginPath(); c.arc(0, 0, r * .12, 0, Math.PI * 2); c.fillStyle = eye; c.fill();
+    c.restore();
+  }
+  function paint(cv) {
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
+    var pal = PAL[cv.dataset.hue] || PAL.pink, R = rng(+cv.dataset.seed || 1);
+    var S = Math.min(w, h), cx = w / 2, cy = h / 2, rad = S * .36;
+    for (var i = 0; i < 5; i++) {
+      var a = (i / 5) * Math.PI * 2 + R() * .6;
+      leaf(c, cx + Math.cos(a) * rad * .35, cy + Math.sin(a) * rad * .35, rad * (1.05 + R() * .35), a, LEAF[i % 3]);
+    }
+    var pts = [], n = Math.round(150 + S / 4);
+    for (var j = 0; j < n; j++) {
+      var t = R() * Math.PI * 2, d = Math.sqrt(R()) * rad;
+      pts.push({ x: cx + Math.cos(t) * d, y: cy + Math.sin(t) * d * .92, d: d / rad });
+    }
+    pts.sort(function (p, q) { return q.d - p.d; });
+    pts.forEach(function (p) {
+      var r = S * (.042 + R() * .022) * (1.05 - p.d * .25);
+      floret(c, p.x, p.y, r, R() * Math.PI, pal.petals[Math.floor(R() * pal.petals.length)], pal.eye);
+    });
+  }
+  var all = Array.prototype.slice.call(document.querySelectorAll('canvas.hy'));
+  function paintAll() { all.forEach(paint); }
+  paintAll();
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(paintAll, 200); });
+})();
+</script>
+<script>
+/* Photo band: a conveyor. Each photo moves on its own and wraps from the left edge to the right end. */
+(function () {
+  var reel = document.querySelector('.reel');
+  var set = reel && reel.querySelector('.set');
+  if (!set) return;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var originals = Array.prototype.slice.call(set.children);
+  var SPEED = 36;
+  var items = [], L = 0, T = 0, maxW = 0, offset = 0, last = 0, raf = 0, paused = false, lastWidth = 0, timer;
+
+  function teardown() {
+    cancelAnimationFrame(raf); raf = 0;
+    reel.classList.remove('js');
+    items.forEach(function (it) { if (it.clone) it.el.remove(); else { it.el.style.transform = ''; it.el.style.removeProperty('--fh'); } });
+    items = [];
+  }
+  function frame(t) {
+    var dt = Math.min(0.1, (t - last) / 1000); last = t;
+    if (!paused) offset = (offset + SPEED * dt) % L;
+    for (var i = 0; i < items.length; i++) {
+      var x = ((items[i].x - offset + maxW) % T + T) % T - maxW;
+      items[i].el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  function setup() {
+    teardown();
+    lastWidth = reel.clientWidth;
+    if (still.matches) return;
+    var gap = parseFloat(getComputedStyle(set).columnGap) || 16;
+    var base = originals.map(function (el) { return { el: el, x: el.offsetLeft, w: el.offsetWidth, h: el.offsetHeight }; });
+    var x0 = base[0].x, end = base[base.length - 1];
+    L = end.x - x0 + end.w + gap;
+    maxW = Math.max.apply(null, base.map(function (b) { return b.w; }));
+    var copies = Math.max(1, Math.ceil((lastWidth + 2 * maxW) / L));
+    T = copies * L;
+    base.forEach(function (b) { b.el.style.setProperty('--fh', b.h + 'px'); });
+    reel.classList.add('js');
+    for (var j = 0; j < copies; j++) {
+      base.forEach(function (b) {
+        var el = b.el;
+        if (j > 0) {
+          el = b.el.cloneNode(true);
+          el.setAttribute('aria-hidden', 'true');
+          var img = el.querySelector('img');
+          img.alt = ''; img.removeAttribute('fetchpriority');
+          set.appendChild(el);
+        }
+        items.push({ el: el, x: b.x - x0 + j * L, clone: j > 0 });
+      });
+    }
+    last = performance.now();
+    raf = requestAnimationFrame(frame);
+  }
+  reel.addEventListener('mouseenter', function () { paused = true; });
+  reel.addEventListener('mouseleave', function () { paused = false; });
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { if (reel.clientWidth !== lastWidth) setup(); }, 250);
+  });
+  if (still.addEventListener) still.addEventListener('change', setup);
+  if (document.readyState === 'complete') setup(); else window.addEventListener('load', setup);
+})();
+</script>
+<script src="config.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ENDPOINT = String(window.RSVP_ENDPOINT || '').trim();
+  var DEMO = !ENDPOINT;
+
+  /* Countdown */
+  var now = new Date(), wed = new Date(2027, 6, 31);
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var d = Math.round((wed - today) / 86400000);
+  if (d > 0) $('days').textContent = d;
+  else { $('days').parentNode.innerHTML = '<span>' + (d === 0 ? 'Today is the day' : 'Just married') + '</span>'; }
+
+  /* Map and calendar */
+  var venue = 'Fields at Skycrest, 195 Skycrest Lane, Cleveland, NC 27013';
+  $('mapLink').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(venue);
+  var cal = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + encodeURIComponent('Jamie & Abby’s Wedding')
+    + '&dates=20270731/20270801'
+    + '&location=' + encodeURIComponent(venue)
+    + '&details=' + encodeURIComponent('Wedding of Jamie Baker and Abby Pittmon. Entrance is off Triplett Road.');
+  ['calLink', 'calLink2'].forEach(function (id) { var a = $(id); a.href = cal; a.target = '_blank'; a.rel = 'noopener'; });
+
+  /* Placeholder-aware links */
+  function linkBtn(a, url, label) {
+    url = String(url || '').trim();
+    if (url) { a.href = url; a.textContent = label; a.classList.remove('off'); a.removeAttribute('aria-disabled'); }
+    else { a.textContent = 'Link coming soon'; a.classList.add('off'); a.setAttribute('aria-disabled', 'true'); a.removeAttribute('href'); }
+  }
+  var hb = window.HOTEL_BLOCK || {};
+  if (hb.name) $('hotelName').textContent = hb.name;
+  linkBtn($('hotelBtn'), hb.url, 'Book a room');
+
+  var regs = Array.isArray(window.REGISTRIES) && window.REGISTRIES.length ? window.REGISTRIES : [{ name: 'Registry', url: '' }];
+  regs.forEach(function (r) {
+    var c = document.createElement('div'); c.className = 'reg';
+    var ring = document.createElement('div'); ring.className = 'ring'; ring.setAttribute('aria-hidden', 'true'); ring.textContent = 'J&A';
+    var h = document.createElement('h3'); h.textContent = r.name || 'Registry';
+    var a = document.createElement('a'); a.className = 'btn'; a.target = '_blank'; a.rel = 'noopener';
+    c.appendChild(ring); c.appendChild(h);
+    if (!String(r.url || '').trim()) { var p = document.createElement('p'); p.textContent = 'Coming soon'; c.appendChild(p); }
+    linkBtn(a, r.url, 'View registry');
+    c.appendChild(a);
+    $('regs').appendChild(c);
+  });
+
+  /* RSVP */
+  if (DEMO) $('demoNote').hidden = false;
+  function cap(s) { return s.replace(/\b\w/g, function (c) { return c.toUpperCase(); }); }
+  function api(params) {
+    if (DEMO) {
+      return new Promise(function (res) {
+        setTimeout(function () {
+          if (params.action === 'lookup') res({ ok: true, matches: [{ id: 'demo', household: 'The ' + cap(params.q.trim()) + ' Family', max: 4 }] });
+          else res({ ok: true });
+        }, 450);
+      });
+    }
+    var u = new URL(ENDPOINT);
+    Object.keys(params).forEach(function (k) { u.searchParams.set(k, params[k]); });
+    var ctl = new AbortController();
+    var t = setTimeout(function () { ctl.abort(); }, 20000);
+    return fetch(u.toString(), { signal: ctl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { clearTimeout(t); return j; }, function (e) { clearTimeout(t); throw e; });
+  }
+
+  var guest = null;
+  var steps = { find: $('findForm'), resp: $('respForm'), done: $('done') };
+  function show(name) { Object.keys(steps).forEach(function (k) { steps[k].hidden = k !== name; }); }
+
+  function openResponse(g) {
+    guest = g;
+    $('hello').textContent = 'Welcome, ' + g.household;
+    var nl = $('nameList'); nl.innerHTML = '';
+    for (var i = 0; i < g.max; i++) {
+      var inp = document.createElement('input');
+      inp.type = 'text'; inp.maxLength = 80; inp.autocomplete = 'off'; inp.id = 'guestName' + i;
+      inp.value = (g.names && g.names[i]) || '';
+      inp.placeholder = i === 0 ? 'Your full name' : (g.max === 2 ? 'Your guest’s full name' : 'Guest ' + (i + 1) + ' full name');
+      inp.setAttribute('aria-label', inp.placeholder);
+      nl.appendChild(inp);
+    }
+    $('whoHint').hidden = g.max === 1;
+    $('respMsg').textContent = '';
+    show('resp');
+    $('hello').scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+
+  $('findForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = $('lastName').value.trim();
+    $('findMsg').textContent = ''; $('picks').hidden = true; $('picks').innerHTML = '';
+    if (q.length < 2) { $('findMsg').textContent = 'Please enter the last name on your invitation.'; return; }
+    $('findBtn').disabled = true;
+    api({ action: 'lookup', q: q }).then(function (r) {
+      $('findBtn').disabled = false;
+      if (!r || !r.ok || !r.matches || !r.matches.length) {
+        $('findMsg').textContent = 'We could not find that name. Please check the spelling on your invitation, or reach out to Jamie or Abby.';
+        return;
+      }
+      if (r.matches.length === 1) { openResponse(r.matches[0]); return; }
+      $('findMsg').textContent = 'More than one invitation matches. Please choose yours.';
+      $('picks').hidden = false;
+      r.matches.forEach(function (m) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'btn ghost'; b.textContent = m.household;
+        b.addEventListener('click', function () { openResponse(m); });
+        $('picks').appendChild(b);
+      });
+    }).catch(function () {
+      $('findBtn').disabled = false;
+      $('findMsg').textContent = 'Something went wrong reaching the guest list. Please try again in a moment.';
+    });
+  });
+
+  function toggleYes() { $('yesFields').hidden = !$('attYes').checked; }
+  $('attYes').addEventListener('change', toggleYes);
+  $('attNo').addEventListener('change', toggleYes);
+  $('backBtn').addEventListener('click', function () { show('find'); });
+
+  $('respForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var yes = $('attYes').checked, no = $('attNo').checked;
+    if (!yes && !no) { $('respMsg').textContent = 'Please choose whether you will attend.'; return; }
+    var names = Array.prototype.map.call($('nameList').querySelectorAll('input'), function (i) { return i.value.trim(); })
+      .filter(function (n) { return n; });
+    if (yes && !names.length) { $('respMsg').textContent = 'Please enter the name of each person attending.'; return; }
+    $('respMsg').textContent = '';
+    $('sendBtn').disabled = true;
+    var p = {
+      action: 'rsvp', id: guest.id, q: $('lastName').value.trim(),
+      response: yes ? 'yes' : 'no',
+      count: yes ? names.length : 0,
+      names: yes ? names.join('\n') : '',
+      diet: yes ? $('diet').value.trim() : '',
+      song: yes ? $('song').value.trim() : '',
+      note: $('note').value.trim()
+    };
+    api(p).then(function (r) {
+      $('sendBtn').disabled = false;
+      if (!r || !r.ok) { $('respMsg').textContent = 'We could not save your reply. Please try again.'; return; }
+      $('thanks').textContent = yes ? 'See you there' : 'We will miss you';
+      var line = document.createElement('div');
+      line.textContent = yes
+        ? (names.length < 3 ? names.join(' and ') : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]) + ' attending Saturday, July 31, 2027.'
+        : guest.household + ': unable to attend. Thank you for letting us know.';
+      $('summary').textContent = ''; $('summary').appendChild(line);
+      show('done');
+      $('thanks').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }).catch(function () {
+      $('sendBtn').disabled = false;
+      $('respMsg').textContent = 'Something went wrong sending your reply. Please try again in a moment.';
+    });
+  });
+
+  $('changeBtn').addEventListener('click', function () { show('resp'); });
+})();
+</script>
+</body>
+</html>
