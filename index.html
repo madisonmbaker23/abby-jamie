@@ -97,10 +97,8 @@ canvas.hy { position: absolute; pointer-events: none; z-index: 0; }
 .count b { font: 300 3rem/1 var(--serif); font-variant-numeric: tabular-nums; color: var(--leaf); letter-spacing: -.02em; }
 .count span { font: 500 .72rem/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 .hero canvas.hy.a { right: -5%; top: 70px; width: min(58vw, 620px); height: min(58vw, 620px); }
-.hero canvas.hy.b { right: 24%; bottom: -26%; width: min(30vw, 320px); height: min(30vw, 320px); opacity: .95; }
 @media (max-width: 760px) {
   .hero canvas.hy.a { right: -34%; top: 120px; width: 88vw; height: 88vw; opacity: .45; }
-  .hero canvas.hy.b { display: none; }
 }
 
 .actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -286,7 +284,6 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
 
 <div class="hero">
   <canvas class="hy a" data-hue="pink" data-seed="7" aria-hidden="true"></canvas>
-  <canvas class="hy b" data-hue="green" data-seed="21" aria-hidden="true"></canvas>
   <header class="wrap bar">
     <a class="mark" href="#top" id="top">J <span class="pair"><span class="amp">&amp;</span>&nbsp;A</span></a>
     <nav aria-label="Sections">
