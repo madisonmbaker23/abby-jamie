@@ -130,6 +130,9 @@ canvas.hy { position: absolute; pointer-events: none; z-index: 1; }
 }
 .set figure.short { height: calc(var(--h) - 70px); }
 .set img { width: 100%; height: 100%; object-fit: cover; }
+.reel.js { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.reel.js.dragging { cursor: grabbing; }
+.reel.js img { -webkit-user-drag: none; pointer-events: none; }
 .reel.js .track { display: block; width: auto; }
 .reel.js .set { display: block; position: relative; height: var(--h); padding: 0; }
 .reel.js .set figure { position: absolute; left: 0; top: 50%; margin-top: calc(var(--fh) / -2); will-change: transform; }
@@ -674,8 +677,32 @@ input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); bo
     last = performance.now();
     raf = requestAnimationFrame(frame);
   }
-  reel.addEventListener('mouseenter', function () { paused = true; });
-  reel.addEventListener('mouseleave', function () { paused = false; });
+  /* Manual control: drag (mouse or finger) or horizontal trackpad scroll. Auto drift resumes 2s after the last move. */
+  var resumeT, drag = null;
+  function hold() { paused = true; clearTimeout(resumeT); resumeT = setTimeout(function () { paused = false; }, 2000); }
+  function nudge(dx) { if (!L) return; offset = ((offset + dx) % L + L) % L; hold(); }
+  reel.addEventListener('pointerdown', function (e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: false };
+    hold();
+  });
+  reel.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.on) {
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) { if (Math.abs(dy) > 10) drag = null; return; }
+      drag.on = true; reel.classList.add('dragging');
+      try { reel.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    nudge(-(e.clientX - drag.x)); drag.x = e.clientX; drag.y = e.clientY;
+  });
+  function endDrag() { if (drag) { drag = null; reel.classList.remove('dragging'); hold(); } }
+  reel.addEventListener('pointerup', endDrag);
+  reel.addEventListener('pointercancel', endDrag);
+  reel.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); nudge(e.deltaX); }
+  }, { passive: false });
+  reel.addEventListener('dragstart', function (e) { e.preventDefault(); });
   window.addEventListener('resize', function () {
     clearTimeout(timer);
     timer = setTimeout(function () { if (reel.clientWidth !== lastWidth) setup(); }, 250);
